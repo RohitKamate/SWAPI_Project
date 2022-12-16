@@ -3,8 +3,6 @@ import logging
 from typing import List, Optional
 from requests.models import Response
 
-from requests import HTTPError
-
 
 # logging configuration
 logging.basicConfig(
@@ -24,17 +22,18 @@ def mylogger(func):
             logging.error(f"there are issues fetching details")
 
         return result_
+
     return wrapper
 
 
 @mylogger
 def hit_url(url: str) -> Optional[Response]:
-
     response = requests.get(url)
     if response.status_code != 200:
         response.raise_for_status()
     else:
         return response
+
 
 # TODO - try with following function as well.
 

@@ -9,12 +9,12 @@ class Characters(ResourceBase):
 
     def __init__(self):
         super().__init__()
-        self.relative_url = "api/people"  # plural
+        self.__relative_url = "api/people"  # plural
         self.__character_range = [1, 82]
 
     @property
     def relative_url1(self):
-        return self.relative_url
+        return self.__relative_url
 
     @property
     def character_range(self):
@@ -25,7 +25,7 @@ class Characters(ResourceBase):
         self.__character_range = new_range_
 
     def get_count(self):
-        plural_character_url = self.home_url + self.relative_url
+        plural_character_url = self.home_url + self.relative_url1
         response = hit_url(plural_character_url)
         result = response.json()
         return result
